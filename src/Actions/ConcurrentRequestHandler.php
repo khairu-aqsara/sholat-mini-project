@@ -6,8 +6,8 @@ use CurlMultiHandle;
 
 class ConcurrentRequestHandler
 {
-    private array $requests = [];
-    private array $responses = [];
+    public array $requests = [];
+    public array $responses = [];
 
     /**
      * Add a request to the handler.
