@@ -1,0 +1,22 @@
+{
+    "name": "khairu/sholat",
+    "description": "Mini Project for prayer time using plain php",
+    "type": "project",
+    "license": "GPL3",
+    "autoload": {
+        "psr-4": {
+            "Khairu\\Sholat\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khairu Aqsara",
+            "email": "wenkhairu@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "ext-pdo": "*",
+        "ext-curl": "*"
+    }
+}
