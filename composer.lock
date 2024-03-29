@@ -2401,12 +2401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "4a206545a00b0773edf4c056dd712bb96ac5487e"
+                "reference": "396fdbbdb95420649b3d0c4766b992da686c22fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/4a206545a00b0773edf4c056dd712bb96ac5487e",
-                "reference": "4a206545a00b0773edf4c056dd712bb96ac5487e",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/396fdbbdb95420649b3d0c4766b992da686c22fc",
+                "reference": "396fdbbdb95420649b3d0c4766b992da686c22fc",
                 "shasum": ""
             },
             "require": {
@@ -2458,7 +2458,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-22T13:53:14+00:00"
+            "time": "2024-03-29T09:41:38+00:00"
         },
         {
             "name": "sebastian/type",
@@ -3393,7 +3393,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "pestphp/pest": 20
+        "pestphp/pest": 20,
+        "mockery/mockery": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
