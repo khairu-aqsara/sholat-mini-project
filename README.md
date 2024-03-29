@@ -1,4 +1,5 @@
-[![PHP Unit Tests](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml/badge.svg)](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml)
+[![PHP Unit Tests](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml/badge.svg?branch=main)](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml)
+
 # Mini Project Sholat Time
 
 This project focuses on prayer times and is currently limited to the Malaysian time zone. It automatically plays the Adzan when it's time for prayer
