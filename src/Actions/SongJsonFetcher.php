@@ -59,78 +59,100 @@ class SongJsonFetcher
     }
 
     /**
-     * Fetches JSON data for each record in the Box table using ConcurrentRequestHandler.
-     * Retrieves prayer time data from external API for each subscriber's box.
+     * Fetches JSON data for subscriber boxes and processes concurrent requests.
      *
-     * @throws PDOException If an error occurs while fetching data from the database.
+     * @return void
      */
     public function fetchBoxJsonData(): void
     {
-        $service = new SubscriberBoxService();
-        $service->getConnection();
+        $service = new SubscriberBoxService(); // Instantiate SubscriberBoxService
+        $service->getConnection(); // Connect to the database
 
-        $data = $service->getAllSubscriberBoxes();
+        $data = $service->getAllSubscriberBoxes(); // Get all subscriber boxes data
 
-        $service->closeConnection();
+        $service->closeConnection(); // Close the database connection
 
-        if(count($data) > 0) {
-            foreach($data as $rs) {
+        // If there is data available
+        if (count($data) > 0) {
+            foreach ($data as $rs) {
+                // Construct the API URL based on the subscriber's zone
                 $api_url = "$this->sholat_endpoint$rs->zone";
-                $this->concurrentRequestHandler->addRequest($api_url, function($response) use($rs) {
+
+                // Add a concurrent request to the handler
+                $this->concurrentRequestHandler->addRequest($api_url, function ($response) use ($rs) {
+                    // Decode the JSON response
                     $json_data = json_decode($response, true);
+
+                    // Store the JSON data in responses array
                     $this->responses[$rs->subscriber_id][$rs->box_id] = $json_data;
                 });
             }
 
             try {
+                // Execute concurrent requests
                 $this->concurrentRequestHandler->execute();
-            }catch (Exception $e){
+            } catch (Exception $e) {
+                // Handle exception and report to logger
                 $this->logger->report(false, $e->getMessage());
-                echo "[!] Unable to get the JSON {$e->getMessage()}". PHP_EOL;
-                exit();
+                echo "[!] Unable to get the JSON {$e->getMessage()}" . PHP_EOL;
+                exit(); // Exit the script
             }
         }
     }
 
+
     /**
-     * Processes the JSON responses received from API.
-     * Extracts relevant data and prepares it for bulk insertion into the database.
+     * Processes the API response to extract prayer time data and add songs to the database.
+     *
+     * @return void
      */
     public function process_response(): void
     {
-        $all_data = [];
+        $all_data = []; // Initialize an array to store all song data
 
-        if(sizeof($this->responses) === 0) {
-            echo "[!] Unable to read JSON from api response". PHP_EOL;
-            exit();
+        // Check if there are responses in the API
+        if (sizeof($this->responses) === 0) {
+            echo "[!] Unable to read JSON from API response" . PHP_EOL;
+            $this->logger->report(false, "Unable to read JSON from API response");
+            exit(); // Exit the script as JSON data couldn't be read
         }
 
+        // Iterate through each response box
         foreach ($this->responses as $box) {
             foreach ($box as $id => $songs) {
+                // Check if the status of the songs is 'OK!'
                 if ($songs['status'] === 'OK!') {
-                    $prayer_time = $songs['prayerTime'];
+                    $prayer_time = $songs['prayerTime']; // Extract prayer time data
                     foreach ($prayer_time as $value) {
                         foreach ($this->used_key as $key => $label) {
+                            // Check if the key exists in the value array
                             if (isset($value[$key])) {
-                                $datetime = date("Y-m-d H:i:s", strtotime($value['date']." ".$value[$key]));
+                                // Create a Song object with extracted data
+                                $datetime = date("Y-m-d H:i:s", strtotime($value['date'] . " " . $value[$key]));
                                 $data = new Song(
                                     null,
                                     $this->prayingId[$key],
                                     $id,
                                     $datetime
                                 );
-                                $all_data[] = $data;
+                                $all_data[] = $data; // Add the Song object to the array
                             }
                         }
                     }
+                } else {
+                    // Report failed request to the logger
+                    $this->logger->report(false, "Request is failed", $id, $songs['zone']);
                 }
             }
         }
+
+        // If there is data to be added, connect to the SongService and add the songs
         if ($all_data) {
             $service = new SongService();
-            $service->getConnection();
-            $service->addBulkSongs($all_data);
-            $service->closeConnection();
+            $service->getConnection(); // Connect to the database
+            $service->addBulkSongs($all_data); // Add songs in bulk
+            $service->closeConnection(); // Close the database connection
         }
     }
+
 }
