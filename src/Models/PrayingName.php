@@ -8,7 +8,7 @@ namespace Khairu\Sholat\Models;
 class PrayingName
 {
     /** @var int */
-    public int $id;
+    public ?int $id;
 
     /** @var string */
     public string $name;

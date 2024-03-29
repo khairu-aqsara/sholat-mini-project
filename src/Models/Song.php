@@ -10,7 +10,7 @@ use DateTime;
 class Song
 {
     /** @var int */
-    public int $id;
+    public ?int $id;
 
     /** @var int */
     public int $prayingId;
