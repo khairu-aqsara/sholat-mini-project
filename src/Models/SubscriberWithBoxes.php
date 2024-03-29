@@ -11,37 +11,37 @@ class SubscriberWithBoxes
     /**
      * @var int The ID of the subscriber.
      */
-    public $subscriber_id;
+    public int $subscriber_id;
 
     /**
      * @var int The ID of the box.
      */
-    public $box_id;
+    public int $box_id;
 
     /**
      * @var string The name of the zone.
      */
-    public $zone;
+    public string $zone;
 
     /**
      * @var string The name of the subscriber.
      */
-    public $subscriber;
+    public string $subscriber;
 
     /**
      * @var string The name of the box.
      */
-    public $boxes;
+    public string $boxes;
 
     /**
      * @var bool Whether the box has a voice-over.
      */
-    public $has_voice_over;
+    public bool $has_voice_over;
 
     /**
      * @var int The ID of the zones.
      */
-    public $zone_id;
+    public int $zone_id;
 
     /**
      * SubscriberBoxModel constructor.

@@ -10,16 +10,16 @@ use DateTime;
 class Song
 {
     /** @var int */
-    public $id;
+    public int $id;
 
     /** @var int */
-    public $prayingId;
+    public int $prayingId;
 
     /** @var int */
-    public $boxId;
+    public int $boxId;
 
     /** @var string */
-    public $prayingTime;
+    public string $prayingTime;
 
     /**
      * Song constructor.

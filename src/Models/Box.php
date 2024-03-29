@@ -8,16 +8,16 @@ namespace Khairu\Sholat\Models;
 class Box
 {
     /** @var int */
-    public $id;
+    public int $id;
 
     /** @var string */
-    public $name;
+    public string $name;
 
     /** @var int */
-    public $zone_id;
+    public int $zone_id;
 
     /** @var bool */
-    public $hasVoiceOver;
+    public bool $hasVoiceOver;
 
     /**
      * Box constructor.

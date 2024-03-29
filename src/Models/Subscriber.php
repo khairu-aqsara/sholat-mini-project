@@ -8,10 +8,10 @@ namespace Khairu\Sholat\Models;
 class Subscriber
 {
     /** @var int */
-    public $id;
+    public int $id;
 
     /** @var string */
-    public $name;
+    public string $name;
 
     /**
      * Subscriber constructor.

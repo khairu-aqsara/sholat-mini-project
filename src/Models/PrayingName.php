@@ -8,16 +8,16 @@ namespace Khairu\Sholat\Models;
 class PrayingName
 {
     /** @var int */
-    public $id;
+    public int $id;
 
     /** @var string */
-    public $name;
+    public string $name;
 
     /** @var string */
-    public $json_key;
+    public string $json_key;
 
     /** @var int */
-    public $prayingSeq;
+    public int $prayingSeq;
 
     /**
      * PrayingName constructor.

@@ -8,10 +8,10 @@ namespace Khairu\Sholat\Models;
 class SubscriberBox
 {
     /** @var int */
-    public $subscriberId;
+    public int $subscriberId;
 
     /** @var int */
-    public $boxId;
+    public int $boxId;
 
     /**
      * SubscriberBox constructor.

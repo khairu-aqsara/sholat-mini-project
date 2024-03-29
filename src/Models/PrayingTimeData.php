@@ -10,52 +10,52 @@ class PrayingTimeData
     /**
      * @var string The praying date in 'YYYY-MM-DD' format.
      */
-    public $praying_date;
+    public string $praying_date;
 
     /**
      * @var string The praying time in 'HH:MM AM/PM' format.
      */
-    public $praying_time;
+    public string $praying_time;
 
     /**
      * @var string The praying name with date and format (e.g., "Name (MM-DD)").
      */
-    public $praying_name_with_date;
+    public string $praying_name_with_date;
 
     /**
      * @var string The praying name.
      */
-    public $praying_name;
+    public string $praying_name;
 
     /**
      * @var int The praying sequence.
      */
-    public $praying_seq;
+    public int $praying_seq;
 
     /**
      * @var string The box name.
      */
-    public $box;
+    public string $box;
 
     /**
      * @var string The zone name.
      */
-    public $zone;
+    public string $zone;
 
     /**
      * @var string The subscriber name.
      */
-    public $subscriber;
+    public string $subscriber;
 
     /**
      * @var int The subscriber ID.
      */
-    public $subscriber_id;
+    public int $subscriber_id;
 
     /**
      * @var int The box ID.
      */
-    public $box_id;
+    public int $box_id;
 
     /**
      * Constructor to initialize the PrayingTimeData object.

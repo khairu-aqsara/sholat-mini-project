@@ -8,10 +8,10 @@ namespace Khairu\Sholat\Models;
 class Zone
 {
     /** @var int */
-    public $id;
+    public int $id;
 
     /** @var string */
-    public $name;
+    public int $name;
 
     /**
      * PrayingName constructor.
