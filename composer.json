@@ -24,6 +24,9 @@
         "mockery/mockery": "2.0.x-dev"
     },
     "config": {
+        "platform": {
+            "php": "8.2"
+        },
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
