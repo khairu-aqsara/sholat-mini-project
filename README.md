@@ -88,6 +88,17 @@ flowchart TD
 
 ## Installation Guide
 
+### Requirement
+```
+php 8.2
+```
+
+first thing first, we need to install all dependency by running
+
+```bash
+composer install
+```
+
 This application does not utilize migration scripts. Follow these steps to set it up:
 
 1. Manually create a table by executing the `table.sql` file provided.
@@ -113,3 +124,10 @@ php sync.php
 ```
 
 This command will read the Subscriber table, identify all boxes associated with each subscriber, and fetch the prayer time data based on the box's prayer zone.
+
+## Testing
+to run the unit test please run the following command
+```bash
+./vendor/bin/pest
+```
+![img_1.png](img_1.png)
