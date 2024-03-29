@@ -2,7 +2,9 @@
 
 namespace Khairu\Sholat\Exceptions;
 
-class DatabaseException extends \PDOException
+use PDOException;
+
+class DatabaseException extends PDOException
 {
     public static function logException($e): void
     {

@@ -1,4 +1,7 @@
 <?php
+
+use Khairu\Sholat\Actions\SeederExecutor;
+
 require 'vendor/autoload.php';
 
-\Khairu\Sholat\Actions\SeederExecutor::executeSeeder();
+SeederExecutor::executeSeeder();

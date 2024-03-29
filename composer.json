@@ -2,7 +2,7 @@
     "name": "khairu/sholat",
     "description": "Mini Project for prayer time using plain php",
     "type": "project",
-    "license": "GPL3",
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
             "Khairu\\Sholat\\": "src/"
