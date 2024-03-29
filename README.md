@@ -131,3 +131,17 @@ to run the unit test please run the following command
 ./vendor/bin/pest
 ```
 ![img_1.png](img_1.png)
+
+# Autoplay policy in Chrome
+Chrome's autoplay policies changed in April of 2018 and this affects video/audio playback. The Autoplay Policy launched in Chrome 66 for audio and video elements and is effectively blocking roughly half of unwanted media autoplays in Chrome. For the Web Audio API, the autoplay policy launched in Chrome 71. This affects web games, some WebRTC applications, and other web pages using audio features
+
+Here are some steps to enable autoplay audio in Google Chrome
+1. Click the three vertical dots (customize and control)
+2. Select Settings
+3. Select Privacy and security
+4. Select Site settings
+5. Select Additional content settings
+6. Select Sound
+7. Make sure Sites can play sound is checked
+8. Under Allowed to play sound, click Add
+9. Add your local page or webpage
