@@ -1,4 +1,6 @@
-[![PHP Unit Tests](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml/badge.svg?branch=main)](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml)
+[![PHP Unit Tests](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml/badge.svg?branch=main)](https://github.com/khairu-aqsara/sholat-mini-project/actions/workflows/php-tests.yml) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=khairu-aqsara_sholat-mini-project&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=khairu-aqsara_sholat-mini-project) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=khairu-aqsara_sholat-mini-project&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=khairu-aqsara_sholat-mini-project) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=khairu-aqsara_sholat-mini-project&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=khairu-aqsara_sholat-mini-project) 
+
+
 
 # Mini Project Sholat Time
 
