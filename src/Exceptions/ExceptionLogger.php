@@ -12,12 +12,14 @@ class ExceptionLogger extends Exception
 
         if(!$isDatabase) {
             // Compose email content for Non Database
-            if(!is_null($boxId))
+            if(!is_null($boxId)){
                 $emailContent .= "Error occurred in box ID: $boxId\n";
+            }
 
-            if(!empty($zone))
+            if(!empty($zone)){
                 $emailContent .= "Prayer time zone: $zone\n";
-
+            }
+            
             $emailContent .= "Error message: $error";
         }else{
             $emailContent .= $error;

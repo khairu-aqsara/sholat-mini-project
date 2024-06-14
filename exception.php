@@ -1,5 +1,6 @@
 <?php
-require 'vendor/autoload.php';
+require_once('vendor/autoload.php');
+
 // Example usage:
 use Khairu\Sholat\Exceptions\ExceptionLogger;
 

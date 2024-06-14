@@ -18,13 +18,13 @@ class SongJsonFetcher
 {
     private ConcurrentRequestHandler $concurrentRequestHandler;
 
-    private string $sholat_endpoint = "https://www.e-solat.gov.my/index.php?r=esolatApi/TakwimSolat&period=week&zone=";
+    private string $sholatEndpoint = "https://www.e-solat.gov.my/index.php?r=esolatApi/TakwimSolat&period=week&zone=";
 
     public array $responses = [];
 
     protected ExceptionLogger $logger;
 
-    private array $used_key = [
+    private array $usedKey = [
         'imsak' => 'Imsak',
         'fajr' => 'Subuh',
         'dhuhr' => 'Zohor',
@@ -50,7 +50,7 @@ class SongJsonFetcher
         $service = new PrayingNameService();
         $service->getConnection();
 
-        foreach($this->used_key as $key => $value) {
+        foreach($this->usedKey as $key => $value) {
             $praying = $service->getPrayingByJsonKey($key);
             $this->prayingId[$key] = $praying->id;
         }
@@ -76,7 +76,7 @@ class SongJsonFetcher
         if (count($data) > 0) {
             foreach ($data as $rs) {
                 // Construct the API URL based on the subscriber's zone
-                $api_url = "$this->sholat_endpoint$rs->zone";
+                $api_url = "$this->sholatEndpoint$rs->zone";
 
                 // Add a concurrent request to the handler
                 $this->concurrentRequestHandler->addRequest($api_url, function ($response) use ($rs) {
@@ -106,7 +106,7 @@ class SongJsonFetcher
      *
      * @return void
      */
-    public function process_response(): void
+    public function processResponse(): void
     {
         $all_data = []; // Initialize an array to store all song data
 
@@ -120,31 +120,22 @@ class SongJsonFetcher
         // Iterate through each response box
         foreach ($this->responses as $box) {
             foreach ($box as $id => $songs) {
-                // Check if the status of the songs is 'OK!'
                 if ($songs['status'] === 'OK!') {
-                    $prayer_time = $songs['prayerTime']; // Extract prayer time data
-                    foreach ($prayer_time as $value) {
-                        foreach ($this->used_key as $key => $label) {
-                            // Check if the key exists in the value array
-                            if (isset($value[$key])) {
-                                // Create a Song object with extracted data
-                                $datetime = date("Y-m-d H:i:s", strtotime($value['date'] . " " . $value[$key]));
-                                $data = new Song(
-                                    null,
-                                    $this->prayingId[$key],
-                                    $id,
-                                    $datetime
-                                );
-                                $all_data[] = $data; // Add the Song object to the array
+                    $prayerTime = $songs['prayerTime'];
+                    foreach ($prayerTime as $timeData) {
+                        foreach ($this->usedKey as $key => $label) {
+                            if (array_key_exists($key, $timeData)) {
+                                $datetime = $this->createDateTimeObject($timeData['date'], $timeData[$key]);
+                                $data = new Song(null, $this->prayingId[$key], $id, $datetime);
+                                $all_data[] = $data;
                             }
                         }
                     }
                 } else {
-                    // Report failed request to the logger
                     $this->logger->report(false, "Request is failed", $id, $songs['zone']);
                 }
             }
-        }
+        }       
 
         // If there is data to be added, connect to the SongService and add the songs
         if ($all_data) {
@@ -155,4 +146,9 @@ class SongJsonFetcher
         }
     }
 
+    private function createDateTimeObject(string $date, string $time): \DateTime
+    {
+        $dateTimeString = $date . ' ' . $time;
+        return new \DateTime($dateTimeString);
+    }
 }

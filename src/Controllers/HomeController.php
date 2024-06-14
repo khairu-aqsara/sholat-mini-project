@@ -26,8 +26,9 @@ class HomeController extends Controller
         }
 
         // for testing only
-        if(isset($request['play']))
+        if(isset($request['play'])){
             $time_to_pray = true;
+        }
 
         $this->render('index', compact('data','time_to_pray'));
     }
