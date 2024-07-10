@@ -1,0 +1,13 @@
+on: ["push"]
+name: Quality Code Test
+jobs:
+  exakat:
+    name: Scaning Code With Exakat
+    runs-on: ubuntu-latest
+    steps:
+    - uses: action/checkout@v2
+    - name: Quality
+      uses: docker://exakat/exakat-ce
+      with: 
+        ignore_rules: 'Structures/ShouldMakeTernary,Functions/UsesDefaultArguments'
+        
