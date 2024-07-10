@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Quality
-      uses: docker://exakat/exakat-ce
+      uses: docker://exakat/exakat
       with: 
         ignore_rules: 'Structures/ShouldMakeTernary,Functions/UsesDefaultArguments'
         
