@@ -5,7 +5,7 @@ jobs:
     name: Scaning Code With Exakat
     runs-on: ubuntu-latest
     steps:
-    - uses: action/checkout@v2
+    - uses: actions/checkout@v3
     - name: Quality
       uses: docker://exakat/exakat-ce
       with: 
