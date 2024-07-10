@@ -3,11 +3,11 @@ name: Quality Code Test
 jobs:
   exakat:
     name: Scaning Code With Exakat
-    runs-on: ubuntu-latest
+    runs-on: linux-
     steps:
     - uses: actions/checkout@v3
     - name: Quality
-      uses: docker://exakat/exakat
+      uses: docker://exakat/exakat-ga
       with: 
         ignore_rules: 'Structures/ShouldMakeTernary,Functions/UsesDefaultArguments'
         
