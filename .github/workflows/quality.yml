@@ -1,15 +1,30 @@
-name: reviewdog-semgrep
-on: [push]
+---
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
-  linter_name:
-    name: Run Quality Checker
+  build:
+    name: Lint
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: g-wilson/action-semgrep@v1
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          level: warning
-          filter_mode: file
-          semgrep_config: p/gosec
+          fetch-depth: 0
+
+      - name: Checking Code Quality
+        uses: super-linter/super-linter@v6.7.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+...
