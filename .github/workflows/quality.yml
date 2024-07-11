@@ -1,13 +1,15 @@
-on: ["push"]
-name: Quality Code Test
+name: reviewdog-semgrep
+on: [push]
 jobs:
-  exakat:
-    name: Scaning Code With Exakat
-    runs-on: linux-
+  linter_name:
+    name: Run Quality Checker
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Quality
-      uses: docker://exakat/exakat-ga
-      with: 
-        ignore_rules: 'Structures/ShouldMakeTernary,Functions/UsesDefaultArguments'
-        
+      - uses: actions/checkout@v2
+      - uses: g-wilson/action-semgrep@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
+          filter_mode: file
+          semgrep_config: p/gosec
