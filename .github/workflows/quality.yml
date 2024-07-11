@@ -5,10 +5,12 @@ on:
     paths:
       - "**.php"
       - ".github/workflows/phpinsights.yml"
+    branches: [ main ]
   pull_request:
     paths:
       - "**.php"
       - ".github/workflows/phpinsights.yml"
+    branches: [ main ]
 
 jobs:
   phpinsights:
