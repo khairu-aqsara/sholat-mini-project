@@ -1,5 +1,4 @@
----
-name: Lint
+name: Quality Check
 
 on:
   push:
@@ -8,23 +7,18 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    name: Lint
+  build-and-test:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v3
 
-      - name: Checking Code Quality
-        uses: super-linter/super-linter@v6.7.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-...
+      - name: Composer install
+        uses: php-actions/composer@v6
+
+      - name: PHP Code Sniffer
+        uses: php-actions/phpcs@v1
+        with:
+          php_version: 8.1
+          path: src/
+          standard: phpcs.xml
