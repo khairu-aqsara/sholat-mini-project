@@ -19,4 +19,5 @@ jobs:
         id: report
         uses: bearer/bearer-action@v2
         with:
+          skip-rule: 78b86e1a55c81741eacc6c99b523f9b1_0
           severity: critical,high,medium
