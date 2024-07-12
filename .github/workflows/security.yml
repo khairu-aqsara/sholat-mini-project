@@ -18,3 +18,5 @@ jobs:
       - name: Run Report
         id: report
         uses: bearer/bearer-action@v2
+        with:
+          severity: critical,high,medium
